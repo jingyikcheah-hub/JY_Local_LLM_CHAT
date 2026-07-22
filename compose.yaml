@@ -1,0 +1,12 @@
+services:
+  localchat:
+    build: .
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ./models:/app/models:ro
+    environment:
+      LOCALCHAT_CONTEXT_SIZE: ${LOCALCHAT_CONTEXT_SIZE:-4096}
+      LOCALCHAT_THREADS: ${LOCALCHAT_THREADS:-8}
+      LOCALCHAT_GPU_LAYERS: ${LOCALCHAT_GPU_LAYERS:-0}
+    restart: unless-stopped
